@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #90C030;
+  --primary-light: #A0C040;
+  --primary-dark: #70A030;
+  --secondary: #80B040;
+  --background: #F8FAF3;
+  --text: #24320F;
+  --foreground: var(--text);
+  --muted: #52635b;
+  --brand-green: var(--primary);
+  --brand-green-strong: var(--primary-dark);
+  --brand-green-deep: var(--text);
+  --brand-green-soft: #edf6df;
+  --brand-green-olive: var(--secondary);
+  --surface: #ffffff;
+  --line: rgba(36, 50, 15, 0.1);
+  --shadow-soft: 0 24px 70px rgba(36, 50, 15, 0.08);
 }
 
 @theme inline {
@@ -12,15 +26,57 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: rgba(144, 192, 48, 0.25);
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 3px;
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .premium-reveal {
+    animation: premium-reveal 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes premium-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
