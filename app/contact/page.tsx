@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Reveal } from "../components/motion";
 import { PageHero, SiteFooter, SiteHeader } from "../components/site-shell";
 
 export default function ContactPage() {
@@ -10,12 +11,12 @@ export default function ContactPage() {
         badge="Contact"
         title="Contactez EDEC pour votre prochain projet"
         description="Nous sommes à votre disposition pour vous écouter, comprendre vos besoins et vous proposer des solutions concrètes et adaptées à votre contexte."
-        image="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1200&q=80"
+        image="/images/hero/slide-1.jpg"
       />
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[30px] border border-[#80B040]/20 bg-white p-8 shadow-[0_25px_70px_rgba(36,50,15,0.06)]">
+          <Reveal direction="left" className="rounded-[30px] border border-[#80B040]/20 bg-white p-8 shadow-[0_25px_70px_rgba(36,50,15,0.06)]">
             <h2 className="text-2xl font-black tracking-[-0.05em] text-slate-900">Informations de contact</h2>
             <div className="mt-6 space-y-5 text-base leading-8 text-slate-600">
               <p><span className="font-bold text-slate-900">Tél. :</span> 698 576 620 / 233 370 208</p>
@@ -30,9 +31,9 @@ export default function ContactPage() {
                 Nous vous répondons rapidement et sommes à l’écoute pour les projets, les demandes de consultation, les dossiers réglementaires et les formations.
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="rounded-[30px] border border-[#24320F]/10 bg-white p-8 shadow-[0_25px_70px_rgba(36,50,15,0.06)]">
+          <Reveal direction="right" className="rounded-[30px] border border-[#24320F]/10 bg-white p-8 shadow-[0_25px_70px_rgba(36,50,15,0.06)]">
             <h2 className="text-2xl font-black tracking-[-0.05em] text-slate-900">Envoyer un message</h2>
             <form className="mt-6 space-y-5">
               <div>
@@ -55,7 +56,7 @@ export default function ContactPage() {
                 Envoyer le message
               </button>
             </form>
-          </div>
+          </Reveal>
         </div>
       </section>
 

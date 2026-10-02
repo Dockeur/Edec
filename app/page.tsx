@@ -1,16 +1,8 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import HomeSlides from "./components/home-slides";
-import MobileNav from "./components/mobile-nav";
-
-const navItems = [
-  { label: "Accueil", href: "/" },
-  { label: "Présentation", href: "/presentation" },
-  { label: "Services", href: "/services" },
-  { label: "Réalisation", href: "#realisations" },
-  { label: "Contact", href: "/contact" },
-];
+import { Reveal } from "./components/motion";
+import { SiteHeader } from "./components/site-shell";
 
 const services = [
   {
@@ -39,6 +31,15 @@ const services = [
   },
 ];
 
+const serviceImages = [
+  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1511497584788-8767601113f4?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&w=1000&q=85",
+];
+
 const process = [
   { step: "01", title: "Analyse du contexte", text: "Étude du projet, du cadre réglementaire et des enjeux environnementaux et sociaux." },
   { step: "02", title: "Diagnostic & recommandations", text: "Évaluation des impacts, risques et leviers d’amélioration pour une meilleure décision." },
@@ -64,72 +65,9 @@ function Badge({ children, inverse = false }: { children: ReactNode; inverse?: b
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#F8FAF3] text-slate-900">
-      <header id="accueil" className="sticky top-0 z-50 border-b border-[#24320F]/10 bg-[#F8FAF3]/95 shadow-[0_8px_32px_rgba(36,50,15,0.04)] backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/edec.png"
-              alt="Logo EDEC"
-              width={144}
-              height={56}
-              className="h-12 w-28 object-contain sm:h-14 sm:w-36"
-              sizes="(max-width: 640px) 112px, 144px"
-            />
-          </Link>
+      <SiteHeader id="accueil" />
 
-          <nav className="hidden items-center gap-5 text-[11px] font-medium text-[#24320F] sm:gap-6 sm:text-sm md:flex md:gap-7">
-            {navItems.map((item) => (
-              <Link key={item.label} href={item.href} className="whitespace-nowrap py-1 transition-colors hover:text-[#70A030]">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <MobileNav items={navItems} />
-
-          <Link
-            href="/contact"
-            className="hidden items-center justify-center rounded-full bg-[#90C030] px-4 py-2.5 text-xs font-bold text-[#24320F] shadow-[0_8px_24px_rgba(144,192,48,0.22)] transition hover:-translate-y-0.5 hover:bg-[#A0C040] sm:inline-flex sm:text-sm"
-          >
-            Demander un devis
-          </Link>
-        </div>
-      </header>
-
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_14%,_rgba(144,192,48,0.18),_transparent_35%),radial-gradient(circle_at_90%_78%,_rgba(128,176,64,0.12),_transparent_32%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
-          <div className="flex flex-col justify-center">
-            <HomeSlides />
-          </div>
-
-          <div className="relative">
-            <div className="absolute -left-8 top-10 h-36 w-36 rounded-full bg-[#A0C040]/40 blur-3xl" />
-            <div className="absolute -right-6 bottom-8 h-32 w-32 rounded-full bg-[#90C030]/45 blur-3xl" />
-
-            <div className="relative overflow-hidden rounded-[32px] border border-[#24320F]/10 bg-white p-2.5 shadow-[0_30px_80px_rgba(36,50,15,0.14)] sm:p-3">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-                alt="Équipe en réunion de travail"
-                className="h-[330px] w-full rounded-[24px] object-cover sm:h-[420px] lg:h-[500px]"
-              />
-              <div className="absolute inset-x-6 bottom-6 rounded-[24px] border border-white/20 bg-slate-950/60 p-5 backdrop-blur-sm">
-                <div className="flex items-center justify-between text-white/80">
-                  <span className="text-xs uppercase tracking-[0.2em]">EDEC</span>
-                  <span className="rounded-full border border-white/15 bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.18em]">
-                    QHSE
-                  </span>
-                </div>
-                <div className="mt-4 space-y-2 text-sm text-slate-100">
-                  <div>Études d’impact environnemental et social</div>
-                  <div>Audits environnementaux et conformité réglementaire</div>
-                  <div>Formation QHSE et sensibilisation communautaire</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeSlides />
 
       <section aria-labelledby="agrement-title" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -156,8 +94,9 @@ export default function Home() {
               ministry: "Ministère de l’Emploi et de la Formation Professionnelle",
               scope: "la réalisation des formations QHSE.",
             },
-          ].map((item) => (
-            <article key={item.acronym} className="rounded-[26px] border border-[#80B040]/20 bg-white p-6 shadow-[0_18px_45px_rgba(36,50,15,0.05)]">
+          ].map((item, index) => (
+            <Reveal key={item.acronym} delay={index * 0.1} hover>
+            <article className="h-full rounded-[26px] border border-[#80B040]/20 bg-white p-6 shadow-[0_18px_45px_rgba(36,50,15,0.05)]">
               <div className="inline-flex rounded-full bg-[#90C030]/15 px-3 py-1 text-xs font-bold tracking-[0.16em] text-[#24320F]">
                 {item.acronym}
               </div>
@@ -166,72 +105,84 @@ export default function Home() {
                 EDEC est agréé pour {item.scope}
               </p>
             </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section id="presentation" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div className="rounded-[30px] border border-[#80B040]/20 bg-white p-8 shadow-[0_24px_60px_rgba(36,50,15,0.05)] sm:p-10">
-            <Badge>Notre identité</Badge>
-            <h2 className="mt-6 text-3xl font-black tracking-[-0.05em] text-slate-900 sm:text-4xl">
-              Un bureau d’expertise au service de la conformité et de la durabilité.
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-slate-600">
-              EDEC allie droit, légalité et professionnalisme pour accompagner les organisations dans leurs projets, leurs obligations environnementales et leurs ambitions de développement durable.
-            </p>
-            <p className="mt-4 text-base leading-7 text-slate-600">
-              Reposant sur un noyau de personnel permanent appuyé par des consultants extérieurs qualifiés, le cabinet met à disposition des experts capables d’apporter des réponses concrètes et adaptées.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl bg-[#90C030]/[0.1] p-4">
-                <div className="text-sm font-bold text-[#24320F]">Expertise</div>
-                <p className="mt-2 text-sm text-slate-600">Approche technique, réglementaire et opérationnelle.</p>
-              </div>
-              <div className="rounded-2xl bg-[#24320F] p-4 text-white">
-                <div className="text-sm font-bold">Confiance</div>
-                <p className="mt-2 text-sm text-slate-200">Des prestations structurées et un accompagnement de proximité.</p>
-              </div>
+      <section id="presentation" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <Reveal direction="left" className="relative min-h-[430px] overflow-hidden rounded-[32px] bg-[#24320F] shadow-[0_30px_80px_rgba(36,50,15,0.16)] sm:min-h-[560px]">
+            <div
+              role="img"
+              aria-label="Forêt tropicale, écosystème à préserver"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+              style={{ backgroundImage: "url(https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=85)" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#14200c]/85 via-[#14200c]/10 to-transparent" />
+            <div className="absolute inset-x-5 bottom-5 rounded-[24px] border border-white/20 bg-white/10 p-5 text-white backdrop-blur-md sm:inset-x-7 sm:bottom-7 sm:p-6">
+              <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#C4E27A]">Sur le terrain, au Cameroun</div>
+              <p className="mt-2 text-lg font-semibold">Des solutions concrètes pour des projets plus responsables.</p>
             </div>
-          </div>
+            <div className="absolute right-5 top-5 rounded-full border border-white/30 bg-[#F8FAF3] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#24320F] shadow-lg sm:right-7 sm:top-7">
+              Expertise EDEC
+            </div>
+          </Reveal>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            {[
-              "Évaluation environnementale",
-              "QHSE & conformité",
-              "Études de dangers",
-              "Formation des acteurs",
-              "Sensibilisation & communication",
-              "Pilotage de projets durables",
-            ].map((item) => (
-              <div key={item} className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-[0_20px_40px_rgba(15,23,42,0.03)] transition hover:-translate-y-1 hover:shadow-[0_30px_60px_rgba(15,23,42,0.06)]">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-[#90C030]/15 text-lg text-[#70A030]">✓</div>
-                <h3 className="text-lg font-bold text-slate-900">{item}</h3>
-              </div>
-            ))}
-          </div>
+          <Reveal direction="right" className="py-4 lg:py-8">
+            <Badge>Notre identité</Badge>
+            <h2 className="mt-6 text-4xl font-black leading-[1.05] tracking-[-0.055em] text-[#24320F] sm:text-5xl">
+              Faire grandir les projets, sans oublier leur impact.
+            </h2>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+              EDEC accompagne entreprises et collectivités de l’étude à l’action, en associant expertise environnementale, conformité et présence de proximité.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {["Études & audits", "QHSE", "Accompagnement terrain"].map((item) => (
+                <span key={item} className="rounded-full border border-[#80B040]/25 bg-white px-4 py-2 text-sm font-semibold text-[#24320F] shadow-sm">{item}</span>
+              ))}
+            </div>
+            <Link href="/presentation" className="mt-9 inline-flex items-center gap-3 rounded-full bg-[#24320F] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#40551D]">
+              Découvrir EDEC <span aria-hidden="true" className="text-lg">→</span>
+            </Link>
+          </Reveal>
         </div>
       </section>
 
-      <section id="realisations" className="bg-[#24320F] py-20 text-white">
+      <section id="realisations" className="bg-[#24320F] py-20 text-white sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <Badge inverse>Nos services</Badge>
-            <h2 className="mt-6 text-3xl font-black tracking-[-0.05em] text-white sm:text-4xl">
-              Des prestations pensées pour la performance, la conformité et la durabilité.
-            </h2>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <Badge inverse>Nos expertises</Badge>
+              <h2 className="mt-6 text-4xl font-black leading-[1.05] tracking-[-0.055em] text-white sm:text-5xl">
+                Des actions utiles, du terrain aux décisions.
+              </h2>
+            </div>
+            <Link href="/services" className="inline-flex w-fit items-center gap-3 rounded-full border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#A0C040] hover:bg-white/10">
+              Tous nos services <span aria-hidden="true" className="text-lg">→</span>
+            </Link>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
-              <article key={service.title} className="group rounded-[28px] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#A0C040]/50 hover:bg-white/[0.07]">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#90C030]/15 text-lg font-bold text-[#A0C040]">
-                  0{index + 1}
-                </div>
-                <h3 className="text-xl font-bold text-white">{service.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">{service.text}</p>
-              </article>
+              <Reveal key={service.title} delay={index * 0.07} hover>
+                <Link href="/services" className="group relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-[28px] border border-white/15 bg-[#40551D] p-6 text-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] sm:min-h-[390px]">
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${serviceImages[index]})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#10190b]/95 via-[#10190b]/35 to-transparent transition-colors duration-500 group-hover:from-[#10190b]/90" />
+                  <div className="relative z-10">
+                    <span className="mb-4 inline-flex rounded-full border border-white/30 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] backdrop-blur-sm">
+                      Expertise 0{index + 1}
+                    </span>
+                    <h3 className="max-w-sm text-2xl font-bold leading-tight">{service.title}</h3>
+                    <p className="mt-3 line-clamp-2 max-w-md text-sm leading-6 text-white/80">{service.text}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#C4E27A]">En savoir plus <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></span>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -251,12 +202,14 @@ export default function Home() {
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {process.map((item) => (
-              <div key={item.step} className="rounded-[28px] border border-[#80B040]/20 bg-white p-6 shadow-[0_20px_50px_rgba(36,50,15,0.04)]">
+            {process.map((item) => (
+              <Reveal key={item.step} delay={Number(item.step) * 0.06} hover>
+              <div className="h-full rounded-[28px] border border-[#80B040]/20 bg-white p-6 shadow-[0_20px_50px_rgba(36,50,15,0.04)]">
               <div className="text-xs font-bold uppercase tracking-[0.24em] text-[#70A030]">{item.step}</div>
               <h3 className="mt-4 text-xl font-bold text-slate-900">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
             </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -284,11 +237,13 @@ export default function Home() {
                 text: "Un partenaire pour accompagner la transition vers un développement durable.",
               },
             ].map((item, index) => (
-              <article key={item.title} className="rounded-[26px] border border-[#80B040]/20 bg-[#F8FAF3] p-6 shadow-[0_18px_45px_rgba(36,50,15,0.04)]">
+              <Reveal key={item.title} delay={index * 0.1} hover>
+              <article className="h-full rounded-[26px] border border-[#80B040]/20 bg-[#F8FAF3] p-6 shadow-[0_18px_45px_rgba(36,50,15,0.04)]">
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#90C030]/15 text-sm font-bold text-[#70A030]">0{index + 1}</div>
                 <h3 className="text-xl font-bold text-[#24320F]">{item.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
               </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -312,11 +267,13 @@ export default function Home() {
               "Sensibilisation environnementale",
               "Prévention des risques",
               "Management de la conformité",
-            ].map((item) => (
-              <div key={item} className="rounded-[24px] border border-[#80B040]/20 bg-white p-5 shadow-[0_18px_50px_rgba(36,50,15,0.05)]">
+            ].map((item, index) => (
+              <Reveal key={item} delay={index * 0.08} hover>
+              <div className="h-full rounded-[24px] border border-[#80B040]/20 bg-white p-5 shadow-[0_18px_50px_rgba(36,50,15,0.05)]">
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#90C030]/15 text-[#70A030]">+</div>
                 <div className="text-lg font-bold text-slate-900">{item}</div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -341,11 +298,13 @@ export default function Home() {
             </div>
 
             <div className="mt-10 space-y-4">
-              {faqs.map((faq) => (
-                <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+              {faqs.map((faq, index) => (
+                <Reveal key={faq.question} delay={index * 0.06}>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
                   <div className="text-base font-semibold text-white">{faq.question}</div>
                   <p className="mt-2 text-sm leading-7 text-slate-300">{faq.answer}</p>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -380,7 +339,7 @@ export default function Home() {
 
       <footer className="border-t border-[#24320F]/10 bg-[#F8FAF3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 text-sm text-slate-600 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <div className="font-semibold text-slate-800">© 2025 EDEC. Tous droits réservés.</div>
+          <div className="font-semibold text-slate-800">© 2023 EDEC. Tous droits réservés.</div>
           <div className="flex flex-wrap gap-5">
             <Link href="/" className="transition hover:text-[#70A030]">Accueil</Link>
             <Link href="/presentation" className="transition hover:text-[#70A030]">Présentation</Link>

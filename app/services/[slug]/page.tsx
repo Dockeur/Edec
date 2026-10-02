@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Reveal } from "../../components/motion";
 import { SiteFooter, SiteHeader } from "../../components/site-shell";
 import { getService, services } from "../service-data";
 
@@ -51,13 +52,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">{service.summary}</p>
           </div>
 
-          <div className="rounded-[28px] border border-[#24320F]/10 bg-[#24320F] p-6 text-white shadow-[0_24px_60px_rgba(36,50,15,0.15)] sm:p-8">
+          <Reveal direction="right" className="rounded-[28px] border border-[#24320F]/10 bg-[#24320F] p-6 text-white shadow-[0_24px_60px_rgba(36,50,15,0.15)] sm:p-8">
             <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#A0C040]">Etes-vous concerné ?</div>
             <p className="mt-4 text-base leading-8 text-white/80">{service.concerned}</p>
             <Link href="/contact" className="mt-7 inline-flex items-center rounded-full bg-[#90C030] px-5 py-3 text-sm font-bold text-[#24320F] transition hover:bg-[#A0C040]">
               Parler à un expert <span aria-hidden="true" className="ml-2">→</span>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -76,15 +77,17 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <h2 className="mt-5 text-3xl font-black tracking-[-0.05em] text-[#24320F] sm:text-4xl">Les étapes de notre intervention</h2>
             <div className="mt-8 space-y-3">
               {service.steps.map((step, index) => (
-                <div key={step} className="flex gap-4 rounded-2xl border border-[#24320F]/10 bg-white p-4 shadow-[0_12px_35px_rgba(36,50,15,0.04)] sm:p-5">
+                <Reveal key={step} delay={index * 0.08} hover>
+                <div className="flex gap-4 rounded-2xl border border-[#24320F]/10 bg-white p-4 shadow-[0_12px_35px_rgba(36,50,15,0.04)] sm:p-5">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#90C030]/15 text-xs font-black text-[#70A030]">{String(index + 1).padStart(2, "0")}</span>
                   <p className="pt-1 text-sm font-semibold leading-6 text-slate-700">{step}</p>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
 
-          <aside className="h-fit rounded-[28px] bg-[#90C030]/[0.12] p-6 sm:p-8 lg:sticky lg:top-28">
+          <Reveal direction="right" className="h-fit rounded-[28px] bg-[#90C030]/[0.12] p-6 sm:p-8 lg:sticky lg:top-28">
             <span className="inline-flex rounded-full border border-[#80B040]/30 bg-white/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-[#24320F]">Ce que vous recevez</span>
             <h2 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#24320F]">Des livrables directement exploitables.</h2>
             <ul className="mt-6 space-y-4">
@@ -98,7 +101,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <Link href="/contact" className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#24320F] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#40551D]">
               Demander un accompagnement
             </Link>
-          </aside>
+          </Reveal>
         </div>
       </section>
 
