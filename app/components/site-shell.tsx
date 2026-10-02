@@ -48,7 +48,7 @@ export function SiteHeader({ id }: { id?: string } = {}) {
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white shadow-[0_5px_18px_rgba(36,50,15,0.1)] transition duration-300 group-hover:-rotate-6 group-hover:scale-105 sm:h-12 sm:w-12">
             <Image src="/images/edec.png" alt="" width={42} height={42} className="h-9 w-9 object-contain sm:h-10 sm:w-10" />
           </span>
-          <span className="flex flex-col leading-none">
+          <span className="hidden flex-col leading-none sm:flex">
             <span className="text-lg font-black tracking-[0.12em] text-[#24320F] sm:text-xl">EDEC</span>
             <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#70A030] sm:text-[10px]">Engineering & Consulting</span>
           </span>
